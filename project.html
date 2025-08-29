@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Async Await Example</title>
+</head>
+
+<body>
+    <h2>Async/Await Demo</h2>
+    <button onclick="handleData()">Get Data</button>
+    <p id="result"></p>
+
+    <script>
+        // Simulating an asynchronous function (like fetching from API)
+        async function fetchData() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve("Data fetched from server!");
+                }, 2000); // 2 second delay
+            });
+        }
+
+        // Function dependent on fetchData result
+        async function handleData() {
+            document.getElementById("result").innerText = "Loading...";
+            try {
+                let data = await fetchData();  // wait for async result
+                document.getElementById("result").innerText = "Result: " + data;
+            } catch (error) {
+                document.getElementById("result").innerText = "Error: " + error;
+            }
+        }
+    </script>
+</body>
+
+</html>
